@@ -1,26 +1,22 @@
 import React from "react";
 import "./App.css";
+import SymbolsList from "./SymbolsList";
 
 function App() {
   return (
-    <div
-      style={{
-        display: "flex",
-        flex: 1,
-        flexDirection: "row",
-        width: "100%",
-        position: "fixed",
-      }}
-    >
-      <div style={{ flex: 3 }}>
-        <div
-          style={{
-            display: "flex",
-            flex: 1,
-            flexWrap: "wrap",
-          }}
-        >
-          {["a", "b", "c", "d", "e", "f", "g"].map((char) => (
+    <div style={classes.root}>
+      <div
+        style={{
+          display: "flex",
+          flex: 1,
+          overflow: "scroll",
+        }}
+      >
+        <SymbolsList />
+      </div>
+      <div style={{ flex: 3, display: "flex", flexDirection: "column" }}>
+        <div style={classes.active}>
+          {["a", "b", "c", "d", "e", "f", "g"].map((char, index) => (
             <div
               style={{
                 height: 60,
@@ -28,6 +24,7 @@ function App() {
                 margin: 20,
                 padding: 10,
               }}
+              key={index}
             >
               {char}
             </div>
@@ -40,5 +37,21 @@ function App() {
     </div>
   );
 }
+
+const classes = {
+  root: {
+    display: "flex",
+    flex: 1,
+    flexDirection: "row",
+    width: "100%",
+    position: "fixed",
+    height: "100%",
+  },
+  active: {
+    display: "flex",
+    flex: 1,
+    flexWrap: "wrap",
+  },
+};
 
 export default App;
