@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import SymbolsList from "./SymbolsList";
+import MostActive from "./MostActive";
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
       </div>
       <div style={{ flex: 3, display: "flex", flexDirection: "column" }}>
         <div style={classes.active}>
-          {["a", "b", "c", "d", "e", "f", "g"].map((char, index) => (
+          <MostActive />
+          {/* {["a", "b", "c", "d", "e", "f", "g", "h", "i"].map((char, index) => (
             <div
               style={{
                 height: 60,
@@ -28,10 +30,10 @@ function App() {
             >
               {char}
             </div>
-          ))}
+          ))} */}
         </div>
         <div style={{ flex: 1 }}>2</div>
-        <div style={{ flex: 1 }}>3</div>
+        {/* <div style={{ flex: 1 }}>3</div> */}
       </div>
       <div style={{ flex: 1 }}>0</div>
     </div>
