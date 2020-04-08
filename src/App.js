@@ -1,24 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div
+      style={{
+        display: "flex",
+        flex: 1,
+        flexDirection: "row",
+        width: "100%",
+        position: "fixed",
+      }}
+    >
+      <div style={{ flex: 3 }}>
+        <div
+          style={{
+            display: "flex",
+            flex: 1,
+            flexWrap: "wrap",
+          }}
         >
-          Learn React
-        </a>
-      </header>
+          {["a", "b", "c", "d", "e", "f", "g"].map((char) => (
+            <div
+              style={{
+                height: 60,
+                width: 60,
+                margin: 20,
+                padding: 10,
+              }}
+            >
+              {char}
+            </div>
+          ))}
+        </div>
+        <div style={{ flex: 1 }}>2</div>
+        <div style={{ flex: 1 }}>3</div>
+      </div>
+      <div style={{ flex: 1 }}>0</div>
     </div>
   );
 }
