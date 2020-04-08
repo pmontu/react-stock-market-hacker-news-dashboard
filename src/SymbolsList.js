@@ -4,6 +4,7 @@ import { CircularProgress } from "@material-ui/core";
 export default function SymbolsList() {
   const [symbols, setSymbols] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
     setIsLoading(true);
     fetch("https://financialmodelingprep.com/api/v3/company/stock/list")
@@ -12,12 +13,11 @@ export default function SymbolsList() {
         return res.json();
       })
       .then(({ symbolsList }) => {
-        setSymbols(
-          symbolsList.filter((symbol) => symbol.name || symbol.symbol)
-        );
         setIsLoading(false);
+        setSymbols(symbolsList);
       });
   }, []);
+
   if (isLoading)
     return (
       <div
@@ -31,7 +31,7 @@ export default function SymbolsList() {
         <CircularProgress />
       </div>
     );
-  else
+  else {
     return (
       <ul style={{ margin: 16, padding: 0, listStyleType: "none" }}>
         {symbols.map((symbol, index, arr) => (
@@ -48,4 +48,5 @@ export default function SymbolsList() {
         ))}
       </ul>
     );
+  }
 }

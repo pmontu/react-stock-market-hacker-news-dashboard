@@ -52,7 +52,8 @@ const classes = {
   active: {
     display: "flex",
     flex: 1,
-    flexWrap: "wrap",
+    // flexWrap: "wrap",
+    padding: 20,
   },
 };
 
