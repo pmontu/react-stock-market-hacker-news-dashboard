@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { CircularProgress } from "@material-ui/core";
 import { Link, useLocation } from "react-router-dom";
-
-function qs_replace(search, name, value) {
-  let searchParams = new URLSearchParams(search);
-  searchParams.set(name, value);
-  return searchParams.toString();
-}
+import { qs_replace } from "./util";
 
 export default function SymbolsList() {
   const [symbols, setSymbols] = useState([]);
@@ -22,7 +17,7 @@ export default function SymbolsList() {
       })
       .then(({ symbolsList }) => {
         setIsLoading(false);
-        setSymbols(symbolsList.slice(0, 10));
+        setSymbols(symbolsList.slice(0, 100));
       });
   }, []);
 

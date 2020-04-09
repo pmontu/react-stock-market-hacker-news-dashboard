@@ -1,7 +1,12 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Chart } from "react-charts";
+import { useHistory, useLocation } from "react-router-dom";
+import { qs_replace } from "./util";
 
 export default function MostActive() {
+  const history = useHistory();
+  const location = useLocation();
+
   let [data, setData] = useState([
     {
       label: "AB",
@@ -62,10 +67,16 @@ export default function MostActive() {
   );
 
   const handleClick = (event) => {
-    console.log(event);
+    history.push(
+      `${location.pathname}?${qs_replace(
+        location.search,
+        "symbol",
+        event.seriesLabel
+      )}`
+    );
   };
 
-  const LineChart = useCallback(
+  const BarChart = useCallback(
     () => (
       // A react-chart hyper-responsively and continuously fills the available
       // space of its parent element automatically
@@ -87,5 +98,5 @@ export default function MostActive() {
     [data, series, axes]
   );
 
-  return <LineChart />;
+  return <BarChart />;
 }
