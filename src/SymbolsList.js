@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { CircularProgress } from "@material-ui/core";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import { qs_replace } from "./util";
+import Button from "@material-ui/core/Button";
 
 export default function SymbolsList() {
   const [symbols, setSymbols] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const { pathname, search } = useLocation();
+  const history = useHistory();
 
   useEffect(() => {
     setIsLoading(true);
@@ -17,9 +19,17 @@ export default function SymbolsList() {
       })
       .then(({ symbolsList }) => {
         setIsLoading(false);
-        setSymbols(symbolsList.slice(0, 100));
+        setSymbols(symbolsList.splice(0, 100));
       });
   }, []);
+
+  const handleClick = useCallback(
+    (symbol) => {
+      const link = `${pathname}?${qs_replace(search, "symbol", symbol)}`;
+      history.push(link);
+    },
+    [pathname, search, history]
+  );
 
   if (isLoading)
     return (
@@ -39,14 +49,17 @@ export default function SymbolsList() {
       <div className="cards">
         <ul style={{ margin: 16, padding: 0, listStyleType: "none" }}>
           {symbols.map((symbol, index, arr) => {
-            const link = `${pathname}?${qs_replace(
-              search,
-              "symbol",
-              symbol.symbol
-            )}`;
             return (
               <li key={index}>
-                <Link to={link}>{symbol.name || symbol.symbol}</Link>
+                <Button
+                  key={index}
+                  onClick={() => handleClick(symbol.symbol)}
+                  fullWidth={true}
+                  variant="contained"
+                  style={{ marginBottom: 14 }}
+                >
+                  {symbol.name || symbol.symbol}
+                </Button>
               </li>
             );
           })}
