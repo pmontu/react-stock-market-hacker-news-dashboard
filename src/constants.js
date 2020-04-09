@@ -40,3 +40,26 @@ export const HISTORY_DEMO_DATA = [
     ],
   },
 ];
+
+export const MOST_ACTIVE_DEMO_DATA = [
+  {
+    label: "AB",
+    data: [[0, 10]],
+  },
+  {
+    label: "CD",
+    data: [[0, 20]],
+  },
+  {
+    label: "EF",
+    data: [[0, 30]],
+  },
+  {
+    label: "GH",
+    data: [[0, 40]],
+  },
+  {
+    label: "IJ",
+    data: [[0, 50]],
+  },
+];
