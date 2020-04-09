@@ -1,14 +1,9 @@
-* {
-  padding: 0;
+body {
   margin: 0;
 }
 
 div {
   /* border: 1px solid grey; */
-}
-
-.nav {
-  flex: 1;
 }
 
 .nav ul {

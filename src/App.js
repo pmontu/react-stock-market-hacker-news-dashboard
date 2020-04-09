@@ -28,23 +28,29 @@ function Nav() {
 
 function Home() {
   return (
-    <div style={classes.root}>
+    <div style={classes.home}>
       <div
         style={{
           display: "flex",
           flex: 1,
           overflow: "scroll",
+          flexDirection: "column",
         }}
       >
         <SymbolsList />
       </div>
       <div style={{ flex: 3, display: "flex", flexDirection: "column" }}>
         <div style={classes.active}>
+          Actives
           <MostActive />
         </div>
         <div style={{ flex: 1 }}>3</div>
       </div>
-      <div style={{ flex: 1 }}>3</div>
+      <div
+        style={{ flex: 1, display: "flex", flexDirection: "column-reverse" }}
+      >
+        3
+      </div>
     </div>
   );
 }
@@ -54,10 +60,11 @@ function App() {
     <Router>
       <div
         style={{
-          width: "100vw",
-          height: "100vh",
+          width: "100%",
+          height: "100%",
           display: "flex",
           flexDirection: "column",
+          position: "fixed",
         }}
       >
         <div className="nav">
@@ -65,9 +72,7 @@ function App() {
         </div>
         <Switch>
           <Route exact path="/">
-            <div style={{ flex: 10, display: "flex" }}>
-              <Home />
-            </div>
+            <Home />
           </Route>
           <Route path="/about">
             <div style={classes.about}>
@@ -83,25 +88,22 @@ function App() {
 }
 
 const classes = {
-  root: {
+  home: {
     display: "flex",
-    flex: 1,
+    flex: 10,
     flexDirection: "row",
-    width: "100%",
-    position: "fixed",
-    height: "100%",
+    overflow: "hidden",
   },
   active: {
     display: "flex",
     flex: 1,
-    // flexWrap: "wrap",
     padding: "50px 50px 100px 50px",
   },
   about: {
-    flex: 1,
     display: "flex",
+    alignItems: "center",
     justifyContent: "center",
-    alignContent: "center",
+    height: "100%",
   },
 };
 

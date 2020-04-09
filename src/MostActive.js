@@ -33,11 +33,12 @@ export default function MostActive() {
       })
       .then(({ mostActiveStock }) => {
         const data = mostActiveStock
+          .sort((a, b) => b.price - a.price)
           // .filter((item) => item.ticker !== "BRK-A")
           .reduce((data, item) => {
             data.push({
               label: item.ticker,
-              data: [[0, parseInt(item.price)]],
+              data: [[0, Math.log10(parseInt(item.price))]],
             });
             return data;
           }, []);
