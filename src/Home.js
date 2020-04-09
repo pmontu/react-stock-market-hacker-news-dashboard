@@ -40,7 +40,6 @@ export default function Home() {
           flexDirection: "column",
         }}
       >
-        <h3 style={{ alignSelf: "center" }}>News</h3>
         <News />
       </div>
     </div>
