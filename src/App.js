@@ -12,7 +12,6 @@ import {
 
 function Nav() {
   const location = useLocation();
-  console.log("debug", { location });
 
   return (
     <ul>
@@ -41,7 +40,6 @@ function Home() {
       </div>
       <div style={{ flex: 3, display: "flex", flexDirection: "column" }}>
         <div style={classes.active}>
-          Actives
           <MostActive />
         </div>
         <div style={{ flex: 1 }}>3</div>

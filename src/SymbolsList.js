@@ -1,9 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { CircularProgress } from "@material-ui/core";
+import { Link, useLocation } from "react-router-dom";
+
+function qs_replace(search, name, value) {
+  let searchParams = new URLSearchParams(search);
+  searchParams.set(name, value);
+  return searchParams.toString();
+}
 
 export default function SymbolsList() {
   const [symbols, setSymbols] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const { pathname, search } = useLocation();
 
   useEffect(() => {
     setIsLoading(true);
@@ -14,7 +22,7 @@ export default function SymbolsList() {
       })
       .then(({ symbolsList }) => {
         setIsLoading(false);
-        setSymbols(symbolsList);
+        setSymbols(symbolsList.slice(0, 10));
       });
   }, []);
 
@@ -34,18 +42,27 @@ export default function SymbolsList() {
   else {
     return (
       <ul style={{ margin: 16, padding: 0, listStyleType: "none" }}>
-        {symbols.map((symbol, index, arr) => (
-          <li
-            style={{
-              padding: 10,
-              borderBottom:
-                arr.length - 1 === index ? "nonde" : "1px solid green",
-            }}
-            key={index}
-          >
-            {symbol.name || symbol.symbol}
-          </li>
-        ))}
+        {symbols.map((symbol, index, arr) => {
+          const link = `${pathname}?${qs_replace(
+            search,
+            "symbol",
+            symbol.symbol
+          )}`;
+          return (
+            <li
+              className="card"
+              style={{
+                padding: 10,
+                marginBottom: 14,
+                // borderBottom:
+                //   arr.length - 1 === index ? "nonde" : "1px solid green",
+              }}
+              key={index}
+            >
+              <Link to={link}>{symbol.name || symbol.symbol}</Link>
+            </li>
+          );
+        })}
       </ul>
     );
   }
