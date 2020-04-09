@@ -81,7 +81,7 @@ export default function History() {
   if (!loading)
     return (
       <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
-        <h3>{`${symbol} History`}</h3>
+        <h3 style={{ alignSelf: "center" }}>{`${symbol} History`}</h3>
         <BarChart />
       </div>
     );

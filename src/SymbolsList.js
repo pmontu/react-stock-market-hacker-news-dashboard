@@ -49,8 +49,6 @@ export default function SymbolsList() {
               style={{
                 padding: 10,
                 marginBottom: 14,
-                // borderBottom:
-                //   arr.length - 1 === index ? "nonde" : "1px solid green",
               }}
               key={index}
             >

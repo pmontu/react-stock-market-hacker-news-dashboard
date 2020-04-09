@@ -66,15 +66,18 @@ export default function MostActive() {
     []
   );
 
-  const handleClick = (event) => {
-    history.push(
-      `${location.pathname}?${qs_replace(
-        location.search,
-        "symbol",
-        event.seriesLabel
-      )}`
-    );
-  };
+  const handleClick = useCallback(
+    (event) => {
+      history.push(
+        `${location.pathname}?${qs_replace(
+          location.search,
+          "symbol",
+          event.seriesLabel
+        )}`
+      );
+    },
+    [location.pathname, location.search, history]
+  );
 
   const BarChart = useCallback(
     () => (
@@ -95,7 +98,7 @@ export default function MostActive() {
         />
       </div>
     ),
-    [data, series, axes]
+    [data, series, axes, handleClick]
   );
 
   return <BarChart />;

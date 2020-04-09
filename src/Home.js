@@ -3,6 +3,7 @@ import SymbolsList from "./SymbolsList";
 import MostActive from "./MostActive";
 import History from "./History";
 import { useLocation } from "react-router-dom";
+import News from "./News";
 
 function useSymbol() {
   const location = useLocation();
@@ -15,13 +16,13 @@ export default function Home() {
   return (
     <div style={classes.home}>
       <div style={classes.list}>
-        <h3>Companies</h3>
+        <h3 style={{ alignSelf: "center" }}>Companies</h3>
         <SymbolsList />
       </div>
       <div style={classes.chart}>
         {!symbol && (
           <div style={classes.mostActive}>
-            <h3>Most Active</h3>
+            <h3 style={{ alignSelf: "center" }}>Most Active</h3>
             <MostActive />
           </div>
         )}
@@ -31,11 +32,16 @@ export default function Home() {
           </div>
         )}
       </div>
-      {/* <div
-        style={{ flex: 1, display: "flex", flexDirection: "column-reverse" }}
+      <div
+        style={{
+          flex: 1,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
       >
-        3
-      </div> */}
+        <News />
+      </div>
     </div>
   );
 }
