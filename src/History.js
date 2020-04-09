@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { useLocation } from "react-router-dom";
 import { Chart } from "react-charts";
 import { HISTORY_DEMO_DATA } from "./constants";
+import { CircularProgress } from "@material-ui/core";
 
 function useSymbol() {
   const location = useLocation();
@@ -12,10 +13,12 @@ function useSymbol() {
 export default function History() {
   const symbol = useSymbol();
   let [data, setData] = useState(HISTORY_DEMO_DATA);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (symbol) {
       const url = `https://financialmodelingprep.com/api/v3/historical-price-full/${symbol}?timeseries=5`;
+      setLoading(true);
       fetch(url)
         .then((res) => {
           if (!res.ok) throw Error("failed to fetch");
@@ -26,6 +29,7 @@ export default function History() {
             label: key,
             data: historical.map((h) => [h.date, h[key]]),
           }));
+          setLoading(false);
           setData(data);
         });
     } else {
@@ -74,5 +78,24 @@ export default function History() {
     [data, series, axes]
   );
 
-  return <BarChart />;
+  if (!loading)
+    return (
+      <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
+        <h3>{`${symbol} History`}</h3>
+        <BarChart />
+      </div>
+    );
+  else
+    return (
+      <div
+        style={{
+          display: "flex",
+          flex: 1,
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <CircularProgress />
+      </div>
+    );
 }

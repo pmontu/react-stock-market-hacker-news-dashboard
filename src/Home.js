@@ -15,16 +15,18 @@ export default function Home() {
   return (
     <div style={classes.home}>
       <div style={classes.list}>
+        <h3>Companies</h3>
         <SymbolsList />
       </div>
       <div style={classes.chart}>
         {!symbol && (
           <div style={classes.mostActive}>
+            <h3>Most Active</h3>
             <MostActive />
           </div>
         )}
         {symbol && (
-          <div style={{ flex: 1 }}>
+          <div style={{ flex: 1, display: "flex" }}>
             <History />
           </div>
         )}
@@ -55,5 +57,6 @@ const classes = {
   mostActive: {
     display: "flex",
     flex: 1,
+    flexDirection: "column",
   },
 };
