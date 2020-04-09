@@ -34,7 +34,25 @@ body {
   background-color: #4caf50;
 }
 
-.card {
+.news ul {
+  margin: 16px 16px 16px 32px;
+  padding: 14px;
+  /* list-style-type: none; */
+}
+
+.news li {
+  /* padding: 10px; */
+  margin-bottom: 14px;
+}
+
+.cards {
+  flex: 1;
+  display: "flex";
+}
+
+.cards li {
+  padding: 10px;
+  margin-bottom: 14px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
   padding: 16px;
   text-align: center;

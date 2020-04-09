@@ -36,27 +36,22 @@ export default function SymbolsList() {
     );
   else {
     return (
-      <ul style={{ margin: 16, padding: 0, listStyleType: "none" }}>
-        {symbols.map((symbol, index, arr) => {
-          const link = `${pathname}?${qs_replace(
-            search,
-            "symbol",
-            symbol.symbol
-          )}`;
-          return (
-            <li
-              className="card"
-              style={{
-                padding: 10,
-                marginBottom: 14,
-              }}
-              key={index}
-            >
-              <Link to={link}>{symbol.name || symbol.symbol}</Link>
-            </li>
-          );
-        })}
-      </ul>
+      <div className="cards">
+        <ul style={{ margin: 16, padding: 0, listStyleType: "none" }}>
+          {symbols.map((symbol, index, arr) => {
+            const link = `${pathname}?${qs_replace(
+              search,
+              "symbol",
+              symbol.symbol
+            )}`;
+            return (
+              <li key={index}>
+                <Link to={link}>{symbol.name || symbol.symbol}</Link>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     );
   }
 }

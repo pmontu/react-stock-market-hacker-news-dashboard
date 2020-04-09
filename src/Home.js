@@ -36,10 +36,11 @@ export default function Home() {
         style={{
           flex: 1,
           display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
+          overflow: "scroll",
+          flexDirection: "column",
         }}
       >
+        <h3 style={{ alignSelf: "center" }}>News</h3>
         <News />
       </div>
     </div>
