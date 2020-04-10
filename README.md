@@ -1,6 +1,6 @@
 # ReactJs App using FMP Stock Market and Hacker News API
 
-![Screenshot 2020-04-10 at 2 49 07 PM](https://user-images.githubusercontent.com/1643802/78980163-f6f82a80-7b3a-11ea-948e-aeb52081d91b.png)
+![Screenshot 2020-04-10 at 2 49 07 PM](https://user-images.githubusercontent.com/1643802/78980490-9fa68a00-7b3b-11ea-8f43-e340af9a8c8e.png)
 
 ## Development
 
