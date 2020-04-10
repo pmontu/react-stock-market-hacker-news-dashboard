@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/react-stock-market-hacker-news-dashboard/precache-manifest.0877739eaf3cacb8b7babb18e3b5a552.js"
+  "/react-stock-market-hacker-news-dashboard/precache-manifest.dc92680c08e21011d624924c552e9bcd.js"
 );
 
 self.addEventListener('message', (event) => {
