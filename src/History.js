@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Chart } from "react-charts";
 import { HISTORY_DEMO_DATA } from "./constants";
@@ -56,33 +56,30 @@ export default function History() {
     console.log(event);
   };
 
-  const BarChart = useCallback(
-    () => (
-      // A react-chart hyper-responsively and continuously fills the available
-      // space of its parent element automatically
-      <div
-        style={{
-          width: "100%",
-          height: "100%",
-        }}
-      >
-        <Chart
-          data={data}
-          series={series}
-          axes={axes}
-          tooltip
-          onClick={handleClick}
-        />
-      </div>
-    ),
-    [data, series, axes]
+  const barChart = (
+    // A react-chart hyper-responsively and continuously fills the available
+    // space of its parent element automatically
+    <div
+      style={{
+        width: "100%",
+        height: "100%",
+      }}
+    >
+      <Chart
+        data={data}
+        series={series}
+        axes={axes}
+        tooltip
+        onClick={handleClick}
+      />
+    </div>
   );
 
   if (!loading)
     return (
       <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
         <h3 style={{ alignSelf: "center" }}>{`${symbol} History`}</h3>
-        <BarChart />
+        {barChart}
       </div>
     );
   else
