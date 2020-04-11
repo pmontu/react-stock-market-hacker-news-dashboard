@@ -1,5 +1,5 @@
 import React from "react";
-import SymbolsList from "./SymbolsList";
+import Company from "./Company";
 import MostActive from "./MostActive";
 import History from "./History";
 import { useLocation } from "react-router-dom";
@@ -11,21 +11,27 @@ function useSymbol() {
 }
 
 export default function Home() {
+  return (
+    <div style={classes.home}>
+      <Company />
+      <Chart />
+      <News />
+    </div>
+  );
+}
+
+function Chart() {
   const symbol = useSymbol();
 
   return (
-    <div style={classes.home}>
-      <SymbolsList />
-      <div style={classes.chart}>{symbol ? <History /> : <MostActive />}</div>
-      <News />
-    </div>
+    <div style={classes.chart}>{symbol ? <History /> : <MostActive />}</div>
   );
 }
 
 const classes = {
   home: {
     display: "flex",
-    flex: 10,
+    flex: 1,
     flexDirection: "row",
     overflow: "hidden",
   },

@@ -4,7 +4,7 @@ import { qs_replace } from "./util";
 import Button from "@material-ui/core/Button";
 import Loading from "./Loading";
 
-export default function SymbolsList() {
+export default function Company() {
   const [symbols, setSymbols] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 

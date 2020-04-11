@@ -30,33 +30,25 @@ export default function News() {
       });
   }, [isNews]);
 
+  const handleSwitch = () => {
+    setNewsItems([]);
+    setIsNews((prev) => !prev);
+  };
+
   return (
-    <div
-      className="news"
-      style={{
-        flex: 1,
-        display: "flex",
-        flexDirection: "column",
-        overflow: "scroll",
-      }}
-    >
-      <div style={{ flex: 1, alignSelf: "center" }}>
-        <FormControlLabel
-          control={
-            <Switch
-              checked={isNews}
-              onChange={() => {
-                setNewsItems([]);
-                setIsNews((prev) => !prev);
-              }}
-              name="checkedB"
-              color="primary"
-            />
-          }
-          label={isNews ? "News" : "Asks"}
-        />
-      </div>
-      <ul>
+    <div style={classes.scroll}>
+      <FormControlLabel
+        control={
+          <Switch
+            checked={isNews}
+            onChange={handleSwitch}
+            name="checkedBox"
+            color="primary"
+          />
+        }
+        label={isNews ? "News" : "Asks"}
+      />
+      <ul className="news">
         {newsItems.map((item, index) => (
           <li key={index}>
             <a href={item.url}>{item.title}</a>
@@ -66,3 +58,13 @@ export default function News() {
     </div>
   );
 }
+
+const classes = {
+  scroll: {
+    flex: 1,
+    display: "flex",
+    flexDirection: "column",
+    overflow: "scroll",
+    alignItems: "center",
+  },
+};
