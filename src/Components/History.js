@@ -1,14 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import { Chart } from "react-charts";
 import { HISTORY_DEMO_DATA } from "./constants";
 import { CircularProgress } from "@material-ui/core";
-
-function useSymbol() {
-  const location = useLocation();
-  let searchParams = new URLSearchParams(location.search);
-  return searchParams.get("symbol");
-}
+import { useSymbol } from "./hooks";
 
 export default function History() {
   const symbol = useSymbol();
