@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/react-stock-market-hacker-news-dashboard/static/css/main.37242060.chunk.css",
-    "main.js": "/react-stock-market-hacker-news-dashboard/static/js/main.937605ad.chunk.js",
-    "main.js.map": "/react-stock-market-hacker-news-dashboard/static/js/main.937605ad.chunk.js.map",
+    "main.js": "/react-stock-market-hacker-news-dashboard/static/js/main.66a82d69.chunk.js",
+    "main.js.map": "/react-stock-market-hacker-news-dashboard/static/js/main.66a82d69.chunk.js.map",
     "runtime-main.js": "/react-stock-market-hacker-news-dashboard/static/js/runtime-main.9dbc6937.js",
     "runtime-main.js.map": "/react-stock-market-hacker-news-dashboard/static/js/runtime-main.9dbc6937.js.map",
-    "static/js/2.e8f4c28f.chunk.js": "/react-stock-market-hacker-news-dashboard/static/js/2.e8f4c28f.chunk.js",
-    "static/js/2.e8f4c28f.chunk.js.map": "/react-stock-market-hacker-news-dashboard/static/js/2.e8f4c28f.chunk.js.map",
+    "static/js/2.4fc1959d.chunk.js": "/react-stock-market-hacker-news-dashboard/static/js/2.4fc1959d.chunk.js",
+    "static/js/2.4fc1959d.chunk.js.map": "/react-stock-market-hacker-news-dashboard/static/js/2.4fc1959d.chunk.js.map",
     "index.html": "/react-stock-market-hacker-news-dashboard/index.html",
-    "precache-manifest.bee1b4adec7ab18869a25899033b4e4f.js": "/react-stock-market-hacker-news-dashboard/precache-manifest.bee1b4adec7ab18869a25899033b4e4f.js",
+    "precache-manifest.93e741fb9d557e804da14e374b4241f4.js": "/react-stock-market-hacker-news-dashboard/precache-manifest.93e741fb9d557e804da14e374b4241f4.js",
     "service-worker.js": "/react-stock-market-hacker-news-dashboard/service-worker.js",
     "static/css/main.37242060.chunk.css.map": "/react-stock-market-hacker-news-dashboard/static/css/main.37242060.chunk.css.map",
-    "static/js/2.e8f4c28f.chunk.js.LICENSE.txt": "/react-stock-market-hacker-news-dashboard/static/js/2.e8f4c28f.chunk.js.LICENSE.txt"
+    "static/js/2.4fc1959d.chunk.js.LICENSE.txt": "/react-stock-market-hacker-news-dashboard/static/js/2.4fc1959d.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.9dbc6937.js",
-    "static/js/2.e8f4c28f.chunk.js",
+    "static/js/2.4fc1959d.chunk.js",
     "static/css/main.37242060.chunk.css",
-    "static/js/main.937605ad.chunk.js"
+    "static/js/main.66a82d69.chunk.js"
   ]
 }

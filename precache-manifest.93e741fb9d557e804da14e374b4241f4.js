@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a8bd0bd9e4e81291998154777a05adcb",
+    "revision": "d65490a0505497ee8a10db9162027760",
     "url": "/react-stock-market-hacker-news-dashboard/index.html"
   },
   {
-    "revision": "7be7e4054376068bf081",
+    "revision": "08748299707214960125",
     "url": "/react-stock-market-hacker-news-dashboard/static/css/main.37242060.chunk.css"
   },
   {
-    "revision": "3d7fc59f67e9157045b3",
-    "url": "/react-stock-market-hacker-news-dashboard/static/js/2.e8f4c28f.chunk.js"
+    "revision": "7270c9471188c6c49976",
+    "url": "/react-stock-market-hacker-news-dashboard/static/js/2.4fc1959d.chunk.js"
   },
   {
     "revision": "0749163b59fbee32225059cb60c18af6",
-    "url": "/react-stock-market-hacker-news-dashboard/static/js/2.e8f4c28f.chunk.js.LICENSE.txt"
+    "url": "/react-stock-market-hacker-news-dashboard/static/js/2.4fc1959d.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "7be7e4054376068bf081",
-    "url": "/react-stock-market-hacker-news-dashboard/static/js/main.937605ad.chunk.js"
+    "revision": "08748299707214960125",
+    "url": "/react-stock-market-hacker-news-dashboard/static/js/main.66a82d69.chunk.js"
   },
   {
     "revision": "d1503c5149a80cfb97a1",
