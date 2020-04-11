@@ -33,7 +33,12 @@ export default function News() {
   return (
     <div
       className="news"
-      style={{ flex: 1, display: "flex", flexDirection: "column" }}
+      style={{
+        flex: 1,
+        display: "flex",
+        flexDirection: "column",
+        overflow: "scroll",
+      }}
     >
       <div style={{ flex: 1, alignSelf: "center" }}>
         <FormControlLabel

@@ -3,17 +3,17 @@ import { Chart } from "react-charts";
 import { useHistory, useLocation } from "react-router-dom";
 import { qs_replace } from "./util";
 import { MOST_ACTIVE_DEMO_DATA } from "./constants";
-import { CircularProgress } from "@material-ui/core";
+import Loading from "./Loading";
 
 export default function MostActive() {
   const history = useHistory();
   const location = useLocation();
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   let [data, setData] = useState(MOST_ACTIVE_DEMO_DATA);
 
   useEffect(() => {
-    setLoading(true);
+    setIsLoading(true);
     fetch("https://financialmodelingprep.com/api/v3/stock/actives")
       .then((res) => {
         if (!res.ok) throw Error("failed to fetch");
@@ -22,7 +22,6 @@ export default function MostActive() {
       .then(({ mostActiveStock }) => {
         const data = mostActiveStock
           .sort((a, b) => b.price - a.price)
-          // .filter((item) => item.ticker !== "BRK-A")
           .reduce((data, item) => {
             data.push({
               label: item.ticker,
@@ -30,7 +29,7 @@ export default function MostActive() {
             });
             return data;
           }, []);
-        setLoading(false);
+        setIsLoading(false);
         setData(data);
       });
   }, []);
@@ -82,18 +81,18 @@ export default function MostActive() {
     </div>
   );
 
-  if (!loading) return barChart;
-  else
-    return (
-      <div
-        style={{
-          display: "flex",
-          flex: 1,
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <CircularProgress />
-      </div>
-    );
+  return (
+    <div style={classes.mostActive}>
+      <h3 style={{ alignSelf: "center" }}>Most Active</h3>
+      {isLoading ? <Loading /> : barChart}
+    </div>
+  );
 }
+
+const classes = {
+  mostActive: {
+    display: "flex",
+    flex: 1,
+    flexDirection: "column",
+  },
+};

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Chart } from "react-charts";
 import { HISTORY_DEMO_DATA } from "./constants";
-import { CircularProgress } from "@material-ui/core";
+import Loading from "./Loading";
 import { useSymbol } from "./hooks";
 
 export default function History() {
@@ -69,24 +69,12 @@ export default function History() {
     </div>
   );
 
-  if (!loading)
-    return (
-      <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
-        <h3 style={{ alignSelf: "center" }}>{`${symbol} History`}</h3>
-        {barChart}
-      </div>
-    );
-  else
-    return (
-      <div
-        style={{
-          display: "flex",
-          flex: 1,
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <CircularProgress />
-      </div>
-    );
+  return loading ? (
+    <Loading />
+  ) : (
+    <>
+      <h3 style={{ alignSelf: "center" }}>{`${symbol} History`}</h3>
+      {barChart}
+    </>
+  );
 }
