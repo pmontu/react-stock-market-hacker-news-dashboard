@@ -1,5 +1,6 @@
-export function qs_replace(search, name, value) {
+export function qs_replace(search, name, value = null) {
   let searchParams = new URLSearchParams(search);
-  searchParams.set(name, value);
+  if (value) searchParams.set(name, value);
+  else searchParams.delete(name);
   return searchParams.toString();
 }

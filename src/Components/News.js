@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Switch from "@material-ui/core/Switch";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Typography from "@material-ui/core/Typography";
 import Loading from "./Loading";
+import { qs_replace } from "./util";
+import { useIsNews } from "./hooks";
+import { useLocation, useHistory } from "react-router-dom";
 
 const evalResponce = (res) => {
   if (!res.ok) throw Error("failed to fetch");
@@ -10,8 +14,10 @@ const evalResponce = (res) => {
 
 export default function News() {
   const [newsItems, setNewsItems] = useState([]);
-  const [isNews, setIsNews] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  const { search, pathname } = useLocation();
+  const history = useHistory();
+  const isNews = useIsNews();
 
   useEffect(() => {
     setIsLoading(true);
@@ -40,13 +46,18 @@ export default function News() {
   }, [isNews]);
 
   const handleSwitch = () => {
-    setNewsItems([]);
-    setIsNews((prev) => !prev);
+    const value = isNews ? "ask" : null;
+    const queryString = qs_replace(search, "items", value);
+    history.push({
+      pathname,
+      search: `?${queryString}`,
+    });
   };
 
   return (
     <div style={classes.scroll}>
       <FormControlLabel
+        style={{ marginTop: 18 }}
         control={
           <Switch
             checked={isNews}
@@ -55,7 +66,11 @@ export default function News() {
             color="primary"
           />
         }
-        label={isNews ? "Top Stories" : "Asks"}
+        label={
+          <Typography style={{ fontWeight: "bold" }}>
+            {isNews ? "Top Stories" : "Asks"}
+          </Typography>
+        }
       />
       {isLoading ? (
         <Loading />
