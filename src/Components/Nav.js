@@ -12,8 +12,8 @@ export default () => {
         <li className={getCss("/")}>
           <Link to="/">Stocks</Link>
         </li>
-        <li className={getCss("/companies")}>
-          <Link to="/companies">Companies</Link>
+        <li className={getCss("/company-list")}>
+          <Link to="/company-list">Companies</Link>
         </li>
         <MobileView renderWithFragment>
           <li className={getCss("/news")}>

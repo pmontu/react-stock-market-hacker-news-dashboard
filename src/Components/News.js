@@ -49,13 +49,37 @@ export default function News() {
         label={isNews ? "Top Stories" : "Asks"}
       />
       <ul className="news">
-        {newsItems.map((item, index) => (
-          <li key={index}>
-            <a href={item.url}>{item.title}</a>
-          </li>
-        ))}
+        {newsItems.map((item, index) =>
+          isNews ? (
+            <li key={index}>
+              <a href={item.url}>{item.title}</a>
+            </li>
+          ) : (
+            <Ask {...item} key={index} />
+          )
+        )}
       </ul>
     </div>
+  );
+}
+
+function Ask(ask) {
+  const [isHidden, setIsHidden] = useState(true);
+  return (
+    <li onClick={() => setIsHidden((prev) => !prev)}>
+      <div>{ask.title}</div>
+      {ask.text && (
+        <div
+          style={{
+            display: !isHidden ? "inline-block" : "none",
+            marginTop: 14,
+          }}
+          dangerouslySetInnerHTML={{
+            __html: ask.text,
+          }}
+        ></div>
+      )}
+    </li>
   );
 }
 
