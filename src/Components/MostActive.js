@@ -1,37 +1,29 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { Chart } from "react-charts";
-import { useHistory, useLocation } from "react-router-dom";
-import { qs_replace } from "./util";
-import { MOST_ACTIVE_DEMO_DATA } from "./constants";
+import { useLocation } from "react-router-dom";
+import { qs_replace, evalResponce, getMostActiveChartData } from "./util";
+import { MOST_ACTIVE_DEMO_DATA, SYMBOL } from "./constants";
 import Loading from "./Loading";
+import { Link } from "react-router-dom";
 
 export default function MostActive() {
-  const history = useHistory();
-  const location = useLocation();
+  const { search } = useLocation();
   const [isLoading, setIsLoading] = useState(false);
-
-  let [data, setData] = useState(MOST_ACTIVE_DEMO_DATA);
+  const [mostActiveStock, setMostActiveStock] = useState([]);
+  const [data, setData] = useState(MOST_ACTIVE_DEMO_DATA);
 
   useEffect(() => {
     setIsLoading(true);
     fetch("https://financialmodelingprep.com/api/v3/stock/actives")
-      .then((res) => {
-        if (!res.ok) throw Error("failed to fetch");
-        return res.json();
-      })
+      .then(evalResponce)
       .then(({ mostActiveStock }) => {
-        const data = mostActiveStock
-          .sort((a, b) => b.price - a.price)
-          .reduce((data, item) => {
-            data.push({
-              label: item.ticker,
-              data: [[0, Math.log10(parseInt(item.price))]],
-            });
-            return data;
-          }, []);
+        mostActiveStock = mostActiveStock.sort((a, b) => b.price - a.price);
+        const data = getMostActiveChartData(mostActiveStock);
         setIsLoading(false);
         setData(data);
-      });
+        setMostActiveStock(mostActiveStock);
+      })
+      .catch((e) => console.error(e));
   }, []);
 
   const series = React.useMemo(
@@ -49,19 +41,6 @@ export default function MostActive() {
     []
   );
 
-  const handleClick = useCallback(
-    (event) => {
-      history.push(
-        `${location.pathname}?${qs_replace(
-          location.search,
-          "symbol",
-          event.seriesLabel
-        )}`
-      );
-    },
-    [location.pathname, location.search, history]
-  );
-
   const barChart = (
     // A react-chart hyper-responsively and continuously fills the available
     // space of its parent element automatically
@@ -71,20 +50,41 @@ export default function MostActive() {
         height: "100%",
       }}
     >
-      <Chart
-        data={data}
-        series={series}
-        axes={axes}
-        tooltip
-        onClick={handleClick}
-      />
+      <Chart data={data} series={series} axes={axes} tooltip />
     </div>
   );
 
   return (
     <div style={classes.mostActive}>
       <h3 style={{ alignSelf: "center" }}>Most Active Stocks</h3>
-      {isLoading ? <Loading /> : barChart}
+      {isLoading && <Loading />}
+      {!isLoading && barChart}
+      {!isLoading && mostActiveStock && (
+        <table>
+          <thead>
+            <tr>
+              <th style={{ textAlign: "left" }}>Company</th>
+              <th>Price</th>
+              <th>Change%</th>
+            </tr>
+          </thead>
+          <tbody>
+            {mostActiveStock.map((stock, index) => (
+              <tr key={index}>
+                <td>
+                  <Link to={`/?${qs_replace(search, SYMBOL, stock.ticker)}`}>
+                    {stock.companyName || stock.ticker}
+                  </Link>
+                </td>
+                <td className="num">{parseFloat(stock.price).toFixed(2)}</td>
+                <td className="num">
+                  {stock.changesPercentage.replace(/[()%]/g, "")}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 }
@@ -94,5 +94,6 @@ const classes = {
     display: "flex",
     flex: 1,
     flexDirection: "column",
+    overflow: "scroll",
   },
 };

@@ -57,3 +57,7 @@ body {
   justify-content: center;
   flex-direction: column;
 }
+
+.num {
+  text-align: right;
+}

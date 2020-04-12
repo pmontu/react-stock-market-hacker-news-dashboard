@@ -63,3 +63,7 @@ export const MOST_ACTIVE_DEMO_DATA = [
     data: [[0, 50]],
   },
 ];
+
+export const ITEM = "item";
+export const ASK = "ask";
+export const SYMBOL = "symbol";

@@ -3,14 +3,10 @@ import Switch from "@material-ui/core/Switch";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Typography from "@material-ui/core/Typography";
 import Loading from "./Loading";
-import { qs_replace } from "./util";
+import { qs_replace, evalResponce } from "./util";
 import { useIsNews } from "./hooks";
 import { useLocation, useHistory } from "react-router-dom";
-
-const evalResponce = (res) => {
-  if (!res.ok) throw Error("failed to fetch");
-  return res.json();
-};
+import { ITEM, ASK } from "./constants";
 
 export default function News() {
   const [newsItems, setNewsItems] = useState([]);
@@ -38,16 +34,18 @@ export default function News() {
                   .catch((e) => rej(e))
               )
           )
-        ).then((items) => {
-          setIsLoading(false);
-          setNewsItems(items);
-        });
+        )
+          .then((items) => {
+            setIsLoading(false);
+            setNewsItems(items);
+          })
+          .catch((e) => console.error(e));
       });
   }, [isNews]);
 
   const handleSwitch = () => {
-    const value = isNews ? "ask" : null;
-    const queryString = qs_replace(search, "items", value);
+    const value = isNews ? ASK : null;
+    const queryString = qs_replace(search, ITEM, value);
     history.push({
       pathname,
       search: `?${queryString}`,

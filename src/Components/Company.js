@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useLocation, useHistory } from "react-router-dom";
-import { qs_replace } from "./util";
+import { qs_replace, evalResponce } from "./util";
 import Button from "@material-ui/core/Button";
 import Loading from "./Loading";
+import { SYMBOL } from "./constants";
 
 export default function Company() {
   const [symbols, setSymbols] = useState([]);
@@ -11,14 +12,12 @@ export default function Company() {
   useEffect(() => {
     setIsLoading(true);
     fetch("https://financialmodelingprep.com/api/v3/company/stock/list")
-      .then((res) => {
-        if (!res.ok) throw Error("failed to fetch");
-        return res.json();
-      })
+      .then(evalResponce)
       .then(({ symbolsList }) => {
         setIsLoading(false);
         setSymbols(symbolsList.splice(0, 100));
-      });
+      })
+      .catch((e) => console.error(e));
   }, []);
 
   return (
@@ -35,7 +34,7 @@ function Symbols({ symbols }) {
 
   const handleClick = useCallback(
     (symbol) => {
-      const link = `/?${qs_replace(search, "symbol", symbol)}`;
+      const link = `/?${qs_replace(search, SYMBOL, symbol)}`;
       history.push(link);
     },
     [search, history]

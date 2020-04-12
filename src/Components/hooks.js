@@ -1,13 +1,15 @@
 import { useLocation } from "react-router-dom";
+import { ITEM, ASK, SYMBOL } from "./constants";
 
 export function useSymbol() {
-  const symbol = useQueryString("symbol");
+  const symbol = useQueryString(SYMBOL);
   return symbol;
 }
 
 export function useIsNews() {
-  const itemsType = useQueryString("items");
-  return itemsType !== "ask";
+  const item = useQueryString(ITEM);
+  if (!item) return true;
+  return item !== ASK;
 }
 
 function useQueryString(param) {
