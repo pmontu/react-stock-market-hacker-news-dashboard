@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Switch from "@material-ui/core/Switch";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Loading from "./Loading";
 
 const evalResponce = (res) => {
   if (!res.ok) throw Error("failed to fetch");
@@ -10,8 +11,10 @@ const evalResponce = (res) => {
 export default function News() {
   const [newsItems, setNewsItems] = useState([]);
   const [isNews, setIsNews] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     fetch(
       `https://hacker-news.firebaseio.com/v0/${
         isNews ? "topstories" : "askstories"
@@ -19,13 +22,19 @@ export default function News() {
     )
       .then(evalResponce)
       .then((ids) => {
-        ids.splice(0, 25).forEach((id) => {
-          fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
-            .then(evalResponce)
-            .then((data) => {
-              // console.log(data);
-              setNewsItems((prev) => [...prev, data]);
-            });
+        Promise.all(
+          ids.splice(0, 25).map(
+            (id) =>
+              new Promise((res, rej) =>
+                fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
+                  .then(evalResponce)
+                  .then((data) => res(data))
+                  .catch((e) => rej(e))
+              )
+          )
+        ).then((items) => {
+          setIsLoading(false);
+          setNewsItems(items);
         });
       });
   }, [isNews]);
@@ -48,17 +57,21 @@ export default function News() {
         }
         label={isNews ? "Top Stories" : "Asks"}
       />
-      <ul className="news">
-        {newsItems.map((item, index) =>
-          isNews ? (
-            <li key={index}>
-              <a href={item.url}>{item.title}</a>
-            </li>
-          ) : (
-            <Ask {...item} key={index} />
-          )
-        )}
-      </ul>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <ul className="news">
+          {newsItems.map((item, index) =>
+            isNews ? (
+              <li key={index}>
+                <a href={item.url}>{item.title}</a>
+              </li>
+            ) : (
+              <Ask {...item} key={index} />
+            )
+          )}
+        </ul>
+      )}
     </div>
   );
 }
