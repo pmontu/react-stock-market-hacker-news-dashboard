@@ -46,7 +46,7 @@ export default function News() {
             color="primary"
           />
         }
-        label={isNews ? "News" : "Asks"}
+        label={isNews ? "Top Stories" : "Asks"}
       />
       <ul className="news">
         {newsItems.map((item, index) => (

@@ -83,7 +83,7 @@ export default function MostActive() {
 
   return (
     <div style={classes.mostActive}>
-      <h3 style={{ alignSelf: "center" }}>Most Active</h3>
+      <h3 style={{ alignSelf: "center" }}>Most Active Stocks</h3>
       {isLoading ? <Loading /> : barChart}
     </div>
   );

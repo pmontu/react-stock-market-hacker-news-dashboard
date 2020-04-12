@@ -69,12 +69,16 @@ export default function History() {
     </div>
   );
 
-  return loading ? (
-    <Loading />
-  ) : (
-    <>
-      <h3 style={{ alignSelf: "center" }}>{`${symbol} History`}</h3>
-      {barChart}
-    </>
+  return (
+    <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
+      {!loading ? (
+        <>
+          <h3 style={{ alignSelf: "center" }}>{`${symbol} History`}</h3>
+          {barChart}
+        </>
+      ) : (
+        <Loading />
+      )}
+    </div>
   );
 }

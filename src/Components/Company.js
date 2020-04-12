@@ -30,15 +30,15 @@ export default function Company() {
 }
 
 function Symbols({ symbols }) {
-  const { pathname, search } = useLocation();
+  const { search } = useLocation();
   const history = useHistory();
 
   const handleClick = useCallback(
     (symbol) => {
-      const link = `${pathname}?${qs_replace(search, "symbol", symbol)}`;
+      const link = `/?${qs_replace(search, "symbol", symbol)}`;
       history.push(link);
     },
-    [pathname, search, history]
+    [search, history]
   );
   return (
     <div className="cards">

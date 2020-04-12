@@ -1,5 +1,6 @@
 import React from "react";
 import { useLocation, Link } from "react-router-dom";
+import { MobileView } from "react-device-detect";
 
 export default () => {
   const location = useLocation();
@@ -9,8 +10,16 @@ export default () => {
     <div className="nav">
       <ul>
         <li className={getCss("/")}>
-          <Link to="/">Home</Link>
+          <Link to="/">Stocks</Link>
         </li>
+        <li className={getCss("/companies")}>
+          <Link to="/companies">Companies</Link>
+        </li>
+        <MobileView renderWithFragment>
+          <li className={getCss("/news")}>
+            <Link to="/news">News</Link>
+          </li>
+        </MobileView>
         <li className={getCss("/about")}>
           <Link to="/about">About</Link>
         </li>

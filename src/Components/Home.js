@@ -1,9 +1,9 @@
 import React from "react";
-import Company from "./Company";
 import MostActive from "./MostActive";
 import History from "./History";
 import { useLocation } from "react-router-dom";
 import News from "./News";
+import { isBrowser } from "react-device-detect";
 
 function useSymbol() {
   const location = useLocation();
@@ -11,20 +11,13 @@ function useSymbol() {
 }
 
 export default function Home() {
-  return (
-    <div style={classes.home}>
-      <Company />
-      <Chart />
-      <News />
-    </div>
-  );
-}
-
-function Chart() {
   const symbol = useSymbol();
 
   return (
-    <div style={classes.chart}>{symbol ? <History /> : <MostActive />}</div>
+    <div style={classes.home}>
+      {!symbol ? <MostActive /> : <History />}
+      {isBrowser && <News />}
+    </div>
   );
 }
 
@@ -35,5 +28,4 @@ const classes = {
     flexDirection: "row",
     overflow: "hidden",
   },
-  chart: { flex: 3, display: "flex", flexDirection: "column" },
 };

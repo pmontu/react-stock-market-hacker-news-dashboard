@@ -10,6 +10,8 @@ import {
 } from "react-router-dom";
 import Home from "./Home";
 import PageNotFound from "./PageNotFound";
+import News from "./News";
+import Company from "./Company";
 
 function App() {
   return (
@@ -19,6 +21,12 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Home />
+          </Route>
+          <Route path="/companies">
+            <Company />
+          </Route>
+          <Route path="/news">
+            <News />
           </Route>
           <Route path="/about">
             <About />
