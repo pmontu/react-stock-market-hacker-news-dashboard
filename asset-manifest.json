@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/react-stock-market-hacker-news-dashboard/static/css/main.b8697eda.chunk.css",
-    "main.js": "/react-stock-market-hacker-news-dashboard/static/js/main.37d0fd3c.chunk.js",
-    "main.js.map": "/react-stock-market-hacker-news-dashboard/static/js/main.37d0fd3c.chunk.js.map",
+    "main.css": "/react-stock-market-hacker-news-dashboard/static/css/main.dc40d12b.chunk.css",
+    "main.js": "/react-stock-market-hacker-news-dashboard/static/js/main.9aceeba3.chunk.js",
+    "main.js.map": "/react-stock-market-hacker-news-dashboard/static/js/main.9aceeba3.chunk.js.map",
     "runtime-main.js": "/react-stock-market-hacker-news-dashboard/static/js/runtime-main.9dbc6937.js",
     "runtime-main.js.map": "/react-stock-market-hacker-news-dashboard/static/js/runtime-main.9dbc6937.js.map",
-    "static/js/2.0ee395c0.chunk.js": "/react-stock-market-hacker-news-dashboard/static/js/2.0ee395c0.chunk.js",
-    "static/js/2.0ee395c0.chunk.js.map": "/react-stock-market-hacker-news-dashboard/static/js/2.0ee395c0.chunk.js.map",
+    "static/js/2.53946d7e.chunk.js": "/react-stock-market-hacker-news-dashboard/static/js/2.53946d7e.chunk.js",
+    "static/js/2.53946d7e.chunk.js.map": "/react-stock-market-hacker-news-dashboard/static/js/2.53946d7e.chunk.js.map",
     "index.html": "/react-stock-market-hacker-news-dashboard/index.html",
-    "precache-manifest.323da45700b5271e987639faecc13188.js": "/react-stock-market-hacker-news-dashboard/precache-manifest.323da45700b5271e987639faecc13188.js",
+    "precache-manifest.ea38fc0f3176b0a83d7297559ca1bc30.js": "/react-stock-market-hacker-news-dashboard/precache-manifest.ea38fc0f3176b0a83d7297559ca1bc30.js",
     "service-worker.js": "/react-stock-market-hacker-news-dashboard/service-worker.js",
-    "static/css/main.b8697eda.chunk.css.map": "/react-stock-market-hacker-news-dashboard/static/css/main.b8697eda.chunk.css.map",
-    "static/js/2.0ee395c0.chunk.js.LICENSE.txt": "/react-stock-market-hacker-news-dashboard/static/js/2.0ee395c0.chunk.js.LICENSE.txt"
+    "static/css/main.dc40d12b.chunk.css.map": "/react-stock-market-hacker-news-dashboard/static/css/main.dc40d12b.chunk.css.map",
+    "static/js/2.53946d7e.chunk.js.LICENSE.txt": "/react-stock-market-hacker-news-dashboard/static/js/2.53946d7e.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.9dbc6937.js",
-    "static/js/2.0ee395c0.chunk.js",
-    "static/css/main.b8697eda.chunk.css",
-    "static/js/main.37d0fd3c.chunk.js"
+    "static/js/2.53946d7e.chunk.js",
+    "static/css/main.dc40d12b.chunk.css",
+    "static/js/main.9aceeba3.chunk.js"
   ]
 }
