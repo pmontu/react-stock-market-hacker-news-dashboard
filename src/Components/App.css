@@ -45,11 +45,6 @@ body {
   margin-bottom: 14px;
 }
 
-.cards {
-  flex: 1;
-  display: "flex";
-}
-
 .center {
   display: flex;
   flex: 1;

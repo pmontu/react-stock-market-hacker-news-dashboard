@@ -4,11 +4,11 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Typography from "@material-ui/core/Typography";
 import Loading from "./Loading";
 import { qs_replace, evalResponce } from "./util";
-import { useIsNews } from "./hooks";
+import { useIsNews, useItem } from "./hooks";
 import { useLocation, useHistory } from "react-router-dom";
 import { ITEM, ASK } from "./constants";
 
-export default function News() {
+function News() {
   const [newsItems, setNewsItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const { search, pathname } = useLocation();
@@ -53,7 +53,7 @@ export default function News() {
   };
 
   return (
-    <div style={classes.scroll}>
+    <>
       <FormControlLabel
         style={{ marginTop: 18 }}
         control={
@@ -85,7 +85,7 @@ export default function News() {
           )}
         </ul>
       )}
-    </div>
+    </>
   );
 }
 
@@ -108,6 +108,17 @@ function Ask(ask) {
     </li>
   );
 }
+
+function NewsItem({ id }) {
+  return id;
+}
+
+export default () => {
+  const item = useItem();
+  return (
+    <div style={classes.scroll}>{item ? <NewsItem id={item} /> : <News />}</div>
+  );
+};
 
 const classes = {
   scroll: {

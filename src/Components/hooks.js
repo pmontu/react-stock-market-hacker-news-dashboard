@@ -12,6 +12,12 @@ export function useIsNews() {
   return item !== ASK;
 }
 
+export function useItem() {
+  const item = useQueryString(ITEM);
+  if (item && item !== ASK) return item;
+  return null;
+}
+
 function useQueryString(param) {
   const location = useLocation();
   let searchParams = new URLSearchParams(location.search);
