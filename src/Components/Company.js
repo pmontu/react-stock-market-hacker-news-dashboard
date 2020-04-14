@@ -1,34 +1,20 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useLocation, useHistory } from "react-router-dom";
-import { qs_replace, evalResponce } from "./util";
-import Button from "@material-ui/core/Button";
+
+import { Button } from "@material-ui/core";
 import Loading from "./Loading";
+
+import DynamicList, { createCache } from "react-window-dynamic-list";
+import AutoSizer from "react-virtualized-auto-sizer";
+
+import { qs_replace, evalResponce } from "./util";
 import { SYMBOL } from "./constants";
 
-export default function Company() {
+const cache = createCache();
+
+const App = () => {
   const [symbols, setSymbols] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    setIsLoading(true);
-    fetch("https://financialmodelingprep.com/api/v3/company/stock/list")
-      .then(evalResponce)
-      .then(({ symbolsList }) => {
-        setIsLoading(false);
-        setSymbols(symbolsList.splice(0, 100));
-      })
-      .catch((e) => console.error(e));
-  }, []);
-
-  return (
-    <div style={classes.list}>
-      <h3 style={{ alignSelf: "center" }}>Companies</h3>
-      {isLoading ? <Loading /> : <Symbols symbols={symbols} />}
-    </div>
-  );
-}
-
-function Symbols({ symbols }) {
   const { search } = useLocation();
   const history = useHistory();
 
@@ -39,28 +25,52 @@ function Symbols({ symbols }) {
     },
     [search, history]
   );
+
+  useEffect(() => {
+    setIsLoading(true);
+    fetch("https://financialmodelingprep.com/api/v3/company/stock/list")
+      .then(evalResponce)
+      .then(({ symbolsList }) => {
+        setIsLoading(false);
+        setSymbols(symbolsList.map((cmp, idx) => ({ ...cmp, id: idx })));
+      })
+      .catch((e) => console.error(e));
+  }, []);
+
   return (
-    <div className="cards">
-      <ul style={{ margin: 16, padding: 0, listStyleType: "none" }}>
-        {symbols.map((symbol, index, arr) => {
-          return (
-            <li key={index}>
-              <Button
-                key={index}
-                onClick={() => handleClick(symbol.symbol)}
-                fullWidth={true}
-                variant="contained"
-                style={{ marginBottom: 14 }}
-              >
-                {symbol.name || symbol.symbol}
-              </Button>
-            </li>
-          );
-        })}
-      </ul>
+    <div style={classes.list}>
+      <h3 style={{ alignSelf: "center" }}>Companies</h3>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <AutoSizer>
+          {({ height, width }) => (
+            <DynamicList
+              cache={cache}
+              data={symbols}
+              width={width}
+              height={height}
+            >
+              {({ index, style }) => (
+                <div style={style}>
+                  <Button
+                    key={index}
+                    onClick={() => handleClick(symbols[index].symbol)}
+                    fullWidth={true}
+                    variant="contained"
+                    style={{ marginBottom: 14 }}
+                  >
+                    {symbols[index].name || symbols[index].symbol}
+                  </Button>
+                </div>
+              )}
+            </DynamicList>
+          )}
+        </AutoSizer>
+      )}
     </div>
   );
-}
+};
 
 const classes = {
   list: {
@@ -70,3 +80,5 @@ const classes = {
     flexDirection: "column",
   },
 };
+
+export default App;
