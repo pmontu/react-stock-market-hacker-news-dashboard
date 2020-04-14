@@ -67,3 +67,4 @@ export const MOST_ACTIVE_DEMO_DATA = [
 export const ITEM = "item";
 export const ASK = "ask";
 export const SYMBOL = "symbol";
+export const PRODUCTION = process.env.NODE_ENV === "production";

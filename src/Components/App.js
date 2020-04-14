@@ -12,30 +12,31 @@ import Home from "./Home";
 import PageNotFound from "./PageNotFound";
 import News from "./News";
 import Company from "./Company";
+import { usePageViews } from "./hooks";
 
 function App() {
+  usePageViews();
+
   return (
-    <Router basename="/react-stock-market-hacker-news-dashboard">
-      <div style={classes.root}>
-        <Nav />
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/company-list">
-            <Company />
-          </Route>
-          <Route path="/news">
-            <News />
-          </Route>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/404" component={PageNotFound} />
-          <Redirect to="/404" />
-        </Switch>
-      </div>
-    </Router>
+    <div style={classes.root}>
+      <Nav />
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/company-list">
+          <Company />
+        </Route>
+        <Route path="/news">
+          <News />
+        </Route>
+        <Route path="/about">
+          <About />
+        </Route>
+        <Route path="/404" component={PageNotFound} />
+        <Redirect to="/404" />
+      </Switch>
+    </div>
   );
 }
 
@@ -49,4 +50,8 @@ const classes = {
   },
 };
 
-export default App;
+export default () => (
+  <Router basename="/react-stock-market-hacker-news-dashboard">
+    <App />
+  </Router>
+);

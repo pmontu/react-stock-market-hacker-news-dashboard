@@ -1,5 +1,18 @@
+import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { ITEM, ASK, SYMBOL } from "./constants";
+import { ITEM, ASK, SYMBOL, PRODUCTION } from "./constants";
+import ReactGA from "react-ga";
+ReactGA.initialize("UA-163560940-1");
+
+export function usePageViews() {
+  let location = useLocation();
+  useEffect(() => {
+    if (PRODUCTION) {
+      const url = `${location.pathname}${location.search}`;
+      ReactGA.pageview(url);
+    }
+  }, [location]);
+}
 
 export function useSymbol() {
   const symbol = useQueryString(SYMBOL);
